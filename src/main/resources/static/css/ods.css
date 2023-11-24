@@ -1,0 +1,281 @@
+.page-header {
+    color: black;
+    height: 80pt;
+
+    display: flex;
+    align-items: center;
+    justify-content: left;
+
+    padding-left: 30pt;
+
+    border-top-left-radius: 10pt;
+    border-top-right-radius: 10pt;
+    /*margin-top: 4px;*/
+}
+
+.custom-navbar {
+    height:20pt;
+    flex-flow: row nowrap;
+    border-bottom-left-radius: 10pt;
+    border-bottom-right-radius: 10pt;
+}
+
+.navbar-gap {
+    gap: 10pt;
+}
+
+.loggeduser {
+    color: black;
+    text-align: right;
+}
+
+.bold {
+    font-weight: bold;
+}
+
+.reset_button_style {
+    all:unset;
+    background: none;
+    color: inherit;
+    border: none;
+    padding: 0;
+    font: inherit;
+    cursor: pointer;
+    outline: inherit;
+}
+
+/*============================================================================*/
+/*
+Montserrat codes:
+      black (900), xbold (800), bold (700), sbold (600), medium (500),
+      regular (400), lihght (300), xlight (200), thin (100)
+*/
+.inactive_link {
+    pointer-events: none;
+    cursor: default;
+}
+
+*{
+    font-family: 'Montserrat', sans-serif;
+}
+
+body {
+    margin-left: auto;
+    margin-right: auto;
+    padding: 20pt;
+    max-width: 1200pt;
+    min-width: 900pt;
+}
+
+.centered_text {
+    text-align: center;
+}
+
+.centered_text ul, ol {
+    display: inline-block;
+    margin: 0;
+    padding: 0;
+    /* For IE, the outcast */
+    zoom:1;
+    *display: inline;
+}
+.centered_text li {
+    float: none;
+    padding: 2px 5px;
+    text-align: left;
+    /*border: 1px solid black;*/
+}
+
+.centered_h {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.floater_wrapper {
+    overflow: hidden;
+    min-height: 100pt;
+}
+
+.floater_left {
+    float: left;
+    margin-left: 10pt;
+    margin-right: 30pt;
+}
+
+.floater_right {
+    float: right;
+    margin-left: 10pt;
+    margin-right: 0pt;
+}
+
+.title, h1.title {
+    font-weight: 700;
+    font-size: xx-large;
+    margin: 0pt;
+}
+
+.txt {
+    font-weight: 500;
+    font-size: medium;
+}
+
+.txt_sec {
+    font-weight: 400;
+    font-size: small;
+}
+
+.txt_sec2 {
+    font-weight: 600;
+    font-size: small;
+}
+
+.txt_error {
+    color: #F70000;
+    font-weight: 600;
+    font-size: small;
+}
+
+.underline {
+    text-decoration: underline;
+}
+
+a:link, a {
+    color: #B70000;
+    text-decoration: underline;
+}
+
+/*a:visited {*/
+/*    color: #4122ff;*/
+/*}*/
+
+.color_negro {
+    background-color: black;
+}
+.color_gris {
+    background-color: #E5E5E5;
+}
+.color_rojo_0 {
+    background-color: #FF7870;
+}
+.color_rojo_1 {
+    background-color: #F70000;
+}
+.color_rojo_2 {
+    background-color: #B70000;
+}
+.color_azul_0 {
+    background-color: #70b2ff;
+}
+.color_azul_1 {
+    background-color: #4122FF;
+}
+.color_verde {
+    background-color: #7BFF70;
+}
+
+.color_amarillo {
+    background-color: #ffd770;
+}
+
+.r_corners {
+    border-radius: 10pt;
+    padding: 4pt 8pt;
+    margin: 4pt;
+}
+
+.r_border {
+    border-radius: 10pt;
+    border: 2pt solid #E5E5E5;
+    padding: 0 20pt;
+}
+
+.added_bottom_spacing {
+    margin-bottom: 4pt;
+}
+
+a.boton_link, .boton_link, .link_camuflado, a.link_camuflado {
+    color: black;
+    text-decoration: none;
+}
+
+a.boton_principal, .boton_principal {
+    border-color: transparent;
+    color: black;
+    text-decoration: none;
+    border-radius: 10pt;
+    padding: 4pt 8pt;
+    margin: 4pt;
+    font-weight: 500;
+    font-size: medium;
+}
+
+a.boton_secundario, .boton_secundario {
+    border-color: transparent;
+    color: black;
+    text-decoration: none;
+    border-radius: 10pt;
+    padding: 4pt 8pt;
+    margin: 4pt;
+    font-weight: 500;
+    font-size: small;
+}
+
+.spaced_txt {
+    padding-left: 10pt;
+}
+
+.img_principal {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 60%;
+    max-height: 300pt;
+}
+
+.table_principal_0 {
+    max-width: 70%;
+    min-width: 500pt;
+}
+
+.top_pinned {
+    position: relative;
+    top: 5pt;
+}
+
+.top_spacing {
+    margin-top: 4pt;
+}
+
+.table_top_spacing {
+    margin-top: 6pt;
+}
+
+.txt_right_align {
+    text-align: right;
+}
+
+.table-container {
+    display: flex;
+    justify-content: center;
+}
+
+.nombre-input {
+    width: 50ch;
+}
+
+.long_txt_input {
+    width: 40ch; /* Set the desired width of the input field */
+}
+
+.description-input {
+    width: 100ch; /* Set the desired width of the input field */
+    height: 40ch; /* Set the desired height of the input field */
+}
+
+.description_tiny_display, p.description_tiny_display {
+    max-width: 320pt;
+}
+
+.align_top {
+    vertical-align:top
+}

@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{fragments/base}">
+<head>
+  <title>EI1027 - ODS Project</title>
+  <meta charset="UTF-8"/>
+</head>
+<body>
+<div layout:fragment="content">
+
+  <div class="floater_wrapper">
+
+    <div class="floater_left">
+      <div>
+        <h2 class="underline">Datos actuales:</h2>
+        <b>Titulo:</b>
+        <span th:text="*{session.tmp_initiative.nameIni}"></span>
+        <br>
+        <b>Fecha Inicio:</b>
+        <span th:text="*{#temporals.format(session.tmp_initiative.startDate, 'dd/MM/yyyy')}" ></span>
+        <br>
+        <b>Fecha fin:</b>
+        <span  th:text="*{session.tmp_initiative.endDate}" ></span>
+        <br>
+        <b>Responsable:</b>
+        <span  th:text="*{session.tmp_initiative.mail}" ></span>
+        <br>
+        <b>SDG asignado:</b>
+        <span  th:text="*{session.tmp_initiative.nameOds}" ></span>
+        <br>
+        <b>Motivacion:</b>
+        <p class="txt_sec description_tiny_display" th:text="*{session.tmp_initiative.motivacion}" ></p>
+        <span th:if="*{!session.tmp_initiative.url.isEmpty()}">
+          <b>Url:</b>
+          <span  th:text="*{session.tmp_initiative.url}" ></span>
+        </span>
+        <br>
+        <b>Descripcion:</b>
+        <p class="txt_sec description_tiny_display">
+          <span th:text="*{session.tmp_initiative.description}"></span>
+        </p>
+        <br>
+      </div>
+      <div>
+        <h2 class="underline">Acciones creadas:</h2>
+
+        <div th:if="*{!session.tmp_initiative.getActions().isEmpty()}">
+          <div th:each="action : *{session.tmp_initiative.getActions()}" class="r_border added_bottom_spacing">
+            <br><b>Accion:</b><span th:text="*{action.nameAction}"></span>
+<!--            <br><b>Ini:</b><span th:text="*{action.nameInitiative}"></span>  <span>REMOVE</span>-->
+<!--            <br><b>SDG:</b><span th:text="*{action.nameOds}"></span>  <span>REMOVE</span>-->
+            <br><b>Target:</b><span th:text="*{action.nameTarget}"></span>
+            <br><b>Fecha Inicio:</b><span th:text="*{action.creationDate}" ></span>
+            <br><b>Fecha fin:</b><span  th:text="*{action.endDate}" ></span>
+            <br><b>Descripcion:</b><p class="txt_sec description_tiny_display"><span th:text="*{action.description}"></span></p>
+            <b>Resultados Esperados:</b><p class="txt_sec description_tiny_display"><span th:text="*{action.resultados}"></span></p>
+            <br>
+
+            <a class="txt_sec2 boton_secundario color_amarillo"
+               th:href="@{/myInitiative/editAction/{nameAction}(nameAction=${action.nameAction})}">EDITAR ACCION</a>
+            <span>  </span>
+            <a class="txt_sec2 boton_secundario color_rojo_0"
+               th:href="@{/myInitiative/deleteAction/{nameAction}(nameAction=${action.nameAction})}"
+               onclick="if(!(confirm('Estas seguro de borrar esta acción?'))) return false">BORRAR ACCION</a>
+            <p></p>
+          </div>
+        </div>
+
+        <div th:if="*{session.tmp_initiative.getActions().isEmpty()}">
+          <b>No hay acciones creadas, añade al menos una</b>
+        </div>
+
+        <br><br>
+      </div>
+    </div>
+
+    <div class="floater_left">
+      <h2 class="underline">Nueva Acción:</h2>
+
+      <form action="#" th:action="@{/myInitiative/addAction}" th:object="${action}" method="post">
+        <table class="txt floater_wrapper centered_h">
+
+          <tr>
+            <td class="txt txt_right_align" ><label>Nombre de la accion:   </label></td>
+            <td><input class="long_txt_input" type="text" th:field="*{nameAction}" maxlength="50" required/>
+              <span>  <span class="txt_error" th:if="${#fields.hasErrors('nameAction')}" th:errors="*{nameAction}"></span></span></td>
+          </tr>
+
+          <tr>
+            <td class="txt txt_right_align"><label>Target al que va dirigida:   </label></td>
+            <td><select type="text" th:field="*{nameTarget}">
+              <option class="txt_sec2 bold"
+                      th:each="target : ${targList}"
+                      th:value="${target.nameTarg}"
+                      th:text="${target.nameTarg}">
+              </option></select>
+            </td>
+          </tr>
+
+          <tr>
+            <td class="txt txt_right_align" ><label>Fecha de inicio:   </label></td>
+            <td><input type="date" th:field="*{creationDate}" required/>
+              <span>  <span class="txt_error" th:if="${#fields.hasErrors('creationDate')}" th:errors="*{creationDate}"></span></span>
+            </td>
+          </tr>
+
+          <tr>
+            <td class="txt txt_right_align" ><label>Fecha de finalización:   </label></td>
+            <td><input type="date" th:field="*{endDate}" required/>
+              <span>  <span class="txt_error" th:if="${#fields.hasErrors('endDate')}" th:errors="*{endDate}"></span></span></td>
+          </tr>
+
+          <tr>
+            <td class="txt txt_right_align align_top"><label>Descripción Breve:   </label></td>
+            <td><textarea class="txt_sec" th:field="*{description}" rows="6" cols="50" maxlength="500" required></textarea></td>
+          </tr>
+
+          <tr>
+            <td class="txt txt_right_align align_top"><label>Resultados Esperados:   </label></td>
+            <td><textarea class="txt_sec" th:field="*{resultados}" rows="10" cols="50" maxlength="10000" required></textarea></td>
+          </tr>
+          <tr>
+
+          <tr class="centered_text">
+            <td colspan="3" class="centered_text">
+              <input class="reset_button_style txt boton_principal color_verde" type="submit" value="AÑADIR ACCION" /> <span>  </span>
+              <a class="txt boton_principal color_rojo_0" th:href="@{/myInitiative/submitInitiative}" onclick="if(!(confirm('Finalizar la edición y enviar?'))) return false">ENVIAR INICIATIVA</a><span>  </span>
+              <a class="txt boton_principal color_azul_0" th:href="@{/myInitiative/add}">VOLVER A EDITAR INICIATIVA</a>
+            </td>
+          </tr>
+
+        </table>
+      </form>
+    </div>
+
+  </div>
+
+</div>
+</body>
+</html>

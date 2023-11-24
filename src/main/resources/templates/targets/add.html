@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{fragments/base}">
+<body>
+<div layout:fragment="content">
+    <b>ODS: </b><span th:text="${nODS}"></span>
+    <form action="#" th:action="@{/target/add}"
+          th:object="${target}" method="post">
+        <input type="hidden" th:field="*{nameOds}" th:value="${nODS}"/>
+        <table>
+            <tr>
+                <td><label>Nombre Target: </label></td>
+                <td><input type="text" th:field="*{nameTarg}" maxlength="50" class="nombre-input" /></td>
+            </tr>
+            <tr>
+                <td class="align_top"><label>Descripción: </label></td>
+                <td><label>
+                <textarea class="description-input" th:field="*{description}" ></textarea>
+            </label></td>
+            </tr>
+            <tr>
+                <td colspan="2"><input class="txt_sec2 color_verde boton_principal" type="submit" value="Añadir Target" />
+                    <a th:href="@{/target/view/by_ods/{ods}(ods=${nODS})}" class="txt_sec2 color_amarillo boton_principal">Volver Atrás</a>
+                </td>
+            </tr>
+        </table>
+    </form>
+</div>
+</body>
+</html>

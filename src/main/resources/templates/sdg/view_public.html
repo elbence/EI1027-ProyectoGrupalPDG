@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{fragments/base}">
+
+<div layout:fragment="content">
+    <h1 th:text="*{ods.index + '. ' + ods.nameOds}"></h1>
+
+    <b>Axis:</b>
+    <span th:text="*{ods.axis}" ></span>
+    <br>
+    <b>Relevancia:</b>
+    <span  th:text="*{ods.relevance}" ></span>
+    <br>
+    <br>
+    <p class="txt" th:text="*{ods.description}"> </p>
+    <a th:href="@{/target/view/by_ods/{nom}(nom=${ods.getNameOds()})}" class="txt_sec2 color_verde boton_principal">Targets</a>
+    <a th:href="@{{path}(path=*{session.get('prevUrl') != null ? session.get('prevUrl') : '/' })}" class="txt_sec2 color_amarillo boton_principal">Volver atrás</a>
+
+
+</div>
+</html>

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{fragments/base}">
+<head>
+    <title>EI1027 - ODS Project</title>
+    <meta charset="UTF-8"/>
+</head>
+<body>
+<div layout:fragment="content">
+
+
+<div class="floater_wrapper centered_text">
+    <p class="txt centered_text"><b>¿Que gestión deseas realizar?</b></p>
+    <ul class="txt">
+        <!--<li><a href="/">Administrar SDG</a></li>
+        <li><a href="/initiative/list">Administrar Iniciativas</a></li> -->
+        <li><a href="/InitiativeBackOffice/list">Ver Iniciativas Pendientes</a></li>
+        <li><a href="/InitiativeBackOffice/list/rejected">Ver Iniciativas Rechazadas</a></li>
+        <li><a th:href="@{/myInitiative/list}">Gestionar mis Iniciativas</a></li>
+
+    </ul>
+</div>
+
+
+</div>
+</body>
+</html>

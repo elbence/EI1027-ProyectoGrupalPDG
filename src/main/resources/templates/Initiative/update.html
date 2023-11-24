@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{fragments/base}">
+<head>
+  <title>EI1027 - ODS Project</title>
+  <meta charset="UTF-8"/>
+</head>
+<body>
+<div layout:fragment="content">
+  <h4 class="centered_text" th:text="*{initiative.nameIni}"></h4>
+  <div class="floater_right top_pinned">
+    <a th:href="@{/action/list/{nIni}(nIni=${initiative.getNameIni()})}" class="txt_sec2 color_azul_0 boton_principal">Acciones</a>
+  </div>
+
+  <form action="#" th:action="@{/initiative/update}"
+        th:object="${initiative}" method="post">
+    <input type="hidden" th:field="*{stat}" th:value="${stat}"/>
+    <input type="hidden" th:field="*{mail}" th:value="${mail}"/>
+
+
+    <table class="txt floater_wrapper centered_h">
+
+      <tr>
+        <td class="txt txt_right_align" ><label>Fecha de inicio:   </label></td>
+        <td><input type="date" th:field="*{startDate}" required/></td>
+      </tr>
+
+      <tr>
+        <td class="txt txt_right_align" ><label>Fecha de finalización:   </label></td>
+        <td><input type="date" th:field="*{endDate}" required/></td>
+        <td class="txt_error" th:if="${#fields.hasErrors('endDate')}" th:errors="*{endDate}"></td>
+      </tr>
+      <tr>
+        <td class="txt txt_right_align"><label>SDG al que va dirigida:   </label></td>
+        <td><select type="text" th:field="*{nameOds}">
+          <option class="txt_sec2 bold"
+                  th:each="ods : ${odsList}"
+                  th:value="${ods.nameOds}"
+                  th:text="${ods.nameOds}">
+          </option></select>
+        </td>
+      </tr>
+
+      <tr>
+        <td class="txt txt_right_align"><label>Motivación:   </label></td>
+        <td><input type="text" th:field="*{motivacion}" maxlength="5000" required/></td>
+      </tr>
+
+      <tr>
+        <td class="txt txt_right_align align_top"><label>Descripción:   </label></td>
+        <td><textarea th:field="*{description}" rows="5" cols="50" maxlength="500" required></textarea></td>
+      </tr>
+
+      <tr>
+        <td class="txt txt_right_align"><label>Url:   </label></td>
+        <td><input type="text" th:field="*{url}" maxlength="100"/></td>
+      </tr>
+      <tr>
+        <td class="txt txt_right_align align_top"><label>Progreso:   </label></td>
+        <td><textarea th:field="*{progress}" rows="5" cols="50" maxlength="500"></textarea></td>
+      </tr>
+
+      <tr class="centered_text">
+        <td colspan="2"><input class="txt boton_principal color_verde" type="submit" value="Guardar" /></td>
+      </tr>
+
+    </table>
+  </form>
+  <a th:href="@{/initiative/list}" class="txt_sec2 color_amarillo boton_principal">Volver Atrás</a>
+  <a th:href="@{/initiative/delete/{nom}(nom=${initiative.getNameIni()})}" class="txt_sec2 color_rojo_0 boton_principal">Finalizar Iniciativa</a>
+
+</div>
+</body>
+</html>

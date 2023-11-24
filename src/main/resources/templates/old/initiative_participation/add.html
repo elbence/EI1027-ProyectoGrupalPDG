@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>Crear participacio en iniciativa</title>
+  <meta charset="UTF-8" />
+  <link rel="stylesheet"
+        href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"/>
+</head>
+<body>
+<h2>Nova participació en iniciativa</h2>
+<form action="#" th:action="@{/templates/old/initiative_participation/add}"
+      th:object="${initiativeParticipation}" method="post">
+  <table>
+    <tr>
+      <td><label>Mail</label></td>
+      <td><input type="text" th:field="*{mail}" /></td>
+      <td><a href="/uji_participant/list">Llistat mails</a></td>
+    </tr>
+    <tr>
+      <td><label>Iniciativa</label></td>
+      <td><input type="text" th:field="*{nameIni}" /></td>
+      <td><a href="/initiative/list">Llistat Iniciatives</a></td>
+    </tr>
+    <tr>
+      <td><label>Missatge</label></td>
+      <td><input type="text" th:field="*{requestMessage}" /></td>
+    </tr>
+      <td colspan="2"><input type="submit" value="Afegeix Iniciatives" /></td>
+    </tr>
+  </table>
+</form>
+</body>
+</html>

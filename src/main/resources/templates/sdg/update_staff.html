@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{fragments/base}">
+
+<div layout:fragment="content">
+<h1 th:text="${ods.index + '. '+ ods.nameOds}"></h1>
+
+  <form action="#" th:action="@{/update}"
+        th:object="${ods}" method="post">
+    <input type="hidden" th:field="*{nameOds}"/>
+    <table>
+      <tr>
+        <td><label>Índice: </label></td>
+        <td><input type="number" th:field="*{index}" /></td>
+      </tr>
+      <tr>
+        <td><label>Relevancia: </label></td>
+        <td><input type="number" th:field="*{relevance}" /></td>
+      </tr>
+      <tr>
+        <td><label>Axis:</label></td>
+        <td>
+          <select type="text" th:field="*{axis}">
+            <option class="txt_sec2 bold" value="Governance">Governance</option>
+            <option class="txt_sec2 bold" value="Education">Education</option>
+            <option class="txt_sec2 bold" value="Research">Research</option>
+          </select></td>
+      </tr>
+      <tr>
+        <td class="align_top"><label>Descripción: </label></td>
+        <td><label>
+          <textarea class="description-input" th:field="*{description}" ></textarea>
+        </label></td>
+      </tr>
+      <tr>
+        <td colspan="2"><input class="txt_sec2 color_verde boton_principal" type="submit" value="Modificar SDG" />
+          <a th:href="@{/view/{nODS}(nODS=${ods.nameOds})}" class="txt_sec2 color_amarillo boton_principal">Volver atrás</a></td>
+      </tr>
+    </table>
+  </form>
+</div>
+</html>
